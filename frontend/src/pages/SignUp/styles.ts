@@ -14,10 +14,10 @@ export const Content = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 700px;
+    max-width: 600px;
 
     form {
-        margin: 80px 0;
+        margin: 40px 0;
         width: 340px;
         text-align: center;
 

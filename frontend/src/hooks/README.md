@@ -1,0 +1,1 @@
+Pasta contendo os arquivos que manipula as informações que podem ser visualizadas de forma global.
