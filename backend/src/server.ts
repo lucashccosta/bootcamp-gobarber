@@ -1,5 +1,6 @@
 import 'reflect-metadata'; //utilizar com typeorm
 import express, { Request, Response, NextFunction } from 'express';
+import cors from 'cors';
 import 'express-async-errors'; //permite que o express capture exceptions em async routes
 import routes from './routes/index.routes';
 import './database';
@@ -8,6 +9,7 @@ import AppError from './errors/AppError';
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use('/files', express.static(uploadConfig.directory));
 app.use(routes);
