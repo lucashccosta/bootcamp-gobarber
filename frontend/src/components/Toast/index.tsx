@@ -5,7 +5,7 @@ import { Container, Content } from './styles';
 const Toast: React.FC = () => {
     return (
         <Container>
-            <Content type="success">
+            <Content type="success" hasDescription>
                 <FiAlertCircle size={20} />
                 <div>
                     <strong>Aconteceu um erro</strong>
