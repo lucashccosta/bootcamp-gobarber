@@ -1,9 +1,9 @@
-import React, { useCallback, useRef, useContext } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
 import { Container, Content, AnimationContainer, Background } from './styles';
 import Input from '../../components/Input';
@@ -22,6 +22,7 @@ const SignIn: React.FC = () => {
     const formRef = useRef<FormHandles>(null);
     const { signIn } = useAuth();
     const { addToast } = useToast();
+    const history = useHistory();
 
     const handleSubmit = useCallback(async (data: SignInFormData) => {
         try {
@@ -40,6 +41,8 @@ const SignIn: React.FC = () => {
                 email: data.email,
                 password: data.password
             });
+
+            history.push('/');
         }
         catch(err) {
             if(err instanceof Yup.ValidationError) {
@@ -55,7 +58,7 @@ const SignIn: React.FC = () => {
                 description: 'Ocorreu um erro ao fazer login. Verifique as credenciais.'
             });
         }
-    }, [signIn, addToast]);
+    }, [signIn, addToast, history]);
 
     return (
         <Container>
@@ -67,7 +70,7 @@ const SignIn: React.FC = () => {
                         <Input name="email" icon={FiMail} placeholder="E-mail" />
                         <Input name="password" type="password" icon={FiLock} placeholder="Senha"/>
                         <Button type="submit">Entrar</Button>
-                        <a href="javascript:void(0)">Esqueci minha senha</a>
+                        <a href="/forgot-password">Esqueci minha senha</a>
                     </Form>
 
                     <Link to="/signup" >
