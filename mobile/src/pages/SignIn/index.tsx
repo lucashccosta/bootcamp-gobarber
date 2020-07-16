@@ -12,6 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/mobile';
+import { useAuth } from '../../hooks/auth';
 import logoImg from '../../assets/logo.png';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -35,6 +36,7 @@ const SignIn: React.FC = () => {
 	const navigation = useNavigation();
 	const formRef = useRef<FormHandles>(null);
 	const passwordInputRef = useRef<TextInput>(null);
+	const { signIn } = useAuth();
 
 	const handleSignIn = useCallback(async (data: SignInFormData) => {
         try {
@@ -49,10 +51,10 @@ const SignIn: React.FC = () => {
                 abortEarly: false //mostra todos os erros ao mesmo tempo
             });
 
-            // await signIn({
-            //     email: data.email,
-            //     password: data.password
-            // });
+            await signIn({
+                email: data.email,
+                password: data.password
+            });
 
         }
         catch(err) {
@@ -68,7 +70,7 @@ const SignIn: React.FC = () => {
 				'Ocorreu um erro ao fazer login. Verifique as credenciais.'
 			);
         }
-    }, []);
+    }, [signIn]);
 
   	return (
 		<>
