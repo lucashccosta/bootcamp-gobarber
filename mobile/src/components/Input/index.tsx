@@ -1,4 +1,11 @@
-import React, { useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
+import React, { 
+	useEffect, 
+	useRef, 
+	useImperativeHandle, 
+	forwardRef, 
+	useState,
+	useCallback
+} from 'react';
 import { TextInputProps } from 'react-native';
 import { useField } from '@unform/core';
 import { Container, TextInput, Icon } from './styles';
@@ -20,6 +27,9 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = ({ name, icon,
 	const inputElementRef = useRef<any>(null);
 	const { registerField, defaultValue = '', fieldName, error } = useField(name);
 	const inputValueRef = useRef<InputValueReference>({ value: defaultValue });
+	const [isFocused, setIsFocused] = useState(false);
+	const [isFilled, setIsFilled] = useState(false);
+
 
 	/**
 	 * Permite acessar componente filho pelo componente pai através da ref
@@ -48,15 +58,26 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = ({ name, icon,
 		});
 	}, [fieldName, registerField]);
 
+	const handleInputFocus = useCallback(() => {
+		setIsFocused(true);
+	}, []);
+
+	const handleInputBlur = useCallback(() => {
+		setIsFocused(false);
+		setIsFilled(!!inputValueRef.current.value);
+	}, []);
+
   	return (
-		<Container>
-			<Icon name={icon} size={20} color="#666360" />
+		<Container isFocused={isFocused}>
+			<Icon name={icon} size={20} color={ isFocused || isFilled ? '#ff9000' : '#666360' } />
 
 			<TextInput 
 				ref={inputElementRef}
 				keyboardAppearance="dark"
 				placeholderTextColor="#666360" 
 				defaultValue={defaultValue}
+				onFocus={handleInputFocus}
+				onBlur={handleInputBlur}
 				onChangeText={value => { inputValueRef.current.value = value }}
 			  	{ ...rest } 
 			/>
