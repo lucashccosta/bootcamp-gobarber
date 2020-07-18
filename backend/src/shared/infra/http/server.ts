@@ -4,6 +4,7 @@ import cors from 'cors';
 import 'express-async-errors'; //permite que o express capture exceptions em async routes
 import routes from '@shared/infra/http/routes/index.routes';
 import '@shared/infra/typeorm';
+import '@shared/container/index';
 import uploadConfig from '@config/upload';
 import AppError from '@shared/errors/AppError';
 
