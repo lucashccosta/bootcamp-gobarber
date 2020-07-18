@@ -2,10 +2,10 @@ import 'reflect-metadata'; //utilizar com typeorm
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import 'express-async-errors'; //permite que o express capture exceptions em async routes
-import routes from './routes/index.routes';
-import './database';
-import uploadConfig from './config/upload';
-import AppError from './errors/AppError';
+import routes from '@shared/infra/http/routes/index.routes';
+import '@shared/infra/typeorm';
+import uploadConfig from '@config/upload';
+import AppError from '@shared/errors/AppError';
 
 const app = express();
 
