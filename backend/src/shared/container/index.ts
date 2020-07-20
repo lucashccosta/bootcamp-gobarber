@@ -1,6 +1,8 @@
 // dependency injection => arquivo para fazer os bindings entre interface e object
 import { container } from 'tsyringe';
 
+import '@modules/users/providers';
+
 import IAppointmentsRepository from '@modules/appointments/repositories/IAppointmentsRepository';
 import AppointmentsRepository from '@modules/appointments/infra/typeorm/repositories/AppointmentsRepository';
 
