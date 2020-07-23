@@ -1,4 +1,3 @@
-import { createConnection } from 'typeorm';
+import { createConnections } from 'typeorm';
 
-//https://typeorm.io/#/using-ormconfig
-createConnection(); //cria conexão com o DB por meio do arquivo ormconfig.json (TypeORM)
+createConnections(); //cria conexão com o DB por meio do arquivo ormconfig.json (TypeORM)
