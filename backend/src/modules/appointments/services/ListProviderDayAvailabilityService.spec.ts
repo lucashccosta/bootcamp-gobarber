@@ -17,11 +17,13 @@ describe('ListProviderDayAvailabilityService', () => {
     it('should be able to list the day availability providers', async () => {
         await fakeAppointmentsRepository.create({
             provider_id: '159753',
+            user_id: '951753',
             date: new Date(2020, 4, 20, 14, 0, 0) //20/MAI/2020 14:00:00
         });
 
         await fakeAppointmentsRepository.create({
             provider_id: '159753',
+            user_id: '951753',
             date: new Date(2020, 4, 20, 15, 0, 0) //20/MAI/2020 15:00:00
         });
 

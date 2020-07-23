@@ -17,21 +17,25 @@ describe('ListProviderMonthAvailabilityService', () => {
     it('should be able to list the month availability providers', async () => {
         await fakeAppointmentsRepository.create({
             provider_id: '159753',
+            user_id: '951753',
             date: new Date(2020, 3, 20, 8, 0, 0) //20/ABR/2020 08:00:00
         });
 
         await fakeAppointmentsRepository.create({
             provider_id: '159753',
+            user_id: '951753',
             date: new Date(2020, 4, 20, 8, 0, 0) //20/MAI/2020 08:00:00
         });
 
         await fakeAppointmentsRepository.create({
             provider_id: '159753',
+            user_id: '951753',
             date: new Date(2020, 4, 20, 10, 0, 0) //20/MAI/2020 10:00:00
         });
 
         await fakeAppointmentsRepository.create({
             provider_id: '159753',
+            user_id: '951753',
             date: new Date(2020, 4, 21, 8, 0, 0) //21/MAI/2020 08:00:00
         });
 
