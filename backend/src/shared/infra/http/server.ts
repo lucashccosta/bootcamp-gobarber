@@ -1,6 +1,7 @@
 import 'reflect-metadata'; //utilizar com typeorm
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
+import { errors as validationErrors } from 'celebrate';
 import 'express-async-errors'; //permite que o express capture exceptions em async routes
 import routes from '@shared/infra/http/routes/index.routes';
 import '@shared/infra/typeorm';
@@ -14,6 +15,8 @@ app.use(cors());
 app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));
 app.use(routes);
+
+app.use(validationErrors());
 
 // Global Exception Handling Middleware
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
