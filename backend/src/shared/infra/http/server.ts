@@ -1,4 +1,5 @@
 import 'reflect-metadata'; //utilizar com typeorm
+import 'dotenv/config';
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import { errors as validationErrors } from 'celebrate';
