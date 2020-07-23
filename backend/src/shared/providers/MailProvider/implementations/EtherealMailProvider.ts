@@ -43,7 +43,7 @@ class EtherealMailProvider implements IFakeMailProvider {
             },
             subject,
             html: await this.mailTemplateProvider.parse(templateData),
-        })
+        });
 
         console.log('URL: %s', nodemailer.getTestMessageUrl(message));
     }
