@@ -9,7 +9,7 @@ class AppointmentController {
         const user_id = request.user.id; //usuário logado
         const { provider_id, date } = request.body;
 
-        const parsedDate = parseISO(date);
+        // const parsedDate = parseISO(date);
 
         //resolve a dependencia de new CreateAppointmentService
         const createAppointment = container.resolve(CreateAppointmentService); 
@@ -17,7 +17,7 @@ class AppointmentController {
         const appointment = await createAppointment.execute({ 
             provider_id, 
             user_id, 
-            date: parsedDate 
+            date
         });
 
         return response.json(appointment);
