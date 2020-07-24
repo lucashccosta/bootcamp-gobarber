@@ -9,7 +9,7 @@ import UserAvatarController from '@modules/users/infra/http/controllers/UserAvat
 const usersRoutes = Router();
 const userController = new UserController();
 const userAvatarController = new UserAvatarController();
-const upload = multer(uploadConfig);
+const upload = multer(uploadConfig.multer);
 
 usersRoutes.post('/', celebrate({
     [Segments.BODY]: {
