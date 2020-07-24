@@ -4,6 +4,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import { errors as validationErrors } from 'celebrate';
 import 'express-async-errors'; //permite que o express capture exceptions em async routes
+import apiRateLimiter from '@shared/infra/http/middlewares/apiRateLimiter';
 import routes from '@shared/infra/http/routes/index.routes';
 import '@shared/infra/typeorm';
 import '@shared/container/index';
@@ -12,6 +13,7 @@ import AppError from '@shared/errors/AppError';
 
 const app = express();
 
+app.use(apiRateLimiter);
 app.use(cors());
 app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));
